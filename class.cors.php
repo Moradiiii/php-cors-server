@@ -84,7 +84,9 @@
 		
 		public function setExposeHeaders($headers = false){
 			if(is_array($headers)){
-				$this->ExposeHeaders = $headers;
+				forecah($headers as $header){
+					$this->ExposeHeaders[] = $header;
+				}
 			}
 			else{
 				$this->ExposeHeaders = false;
@@ -103,7 +105,10 @@
 		
 		public function setAllowHeaders($headers = false){
 			if(is_array($headers)){
-				$this->AllowHeaders = $headers;
+				forecah($headers as $header){
+					$this->AllowHeaders[] = strtolower($header);
+				}
+				//$this->AllowHeaders = $headers;
 			}
 			else{
 				$this->AllowHeaders = true;
@@ -175,7 +180,7 @@
 						}
 						elseif(is_array($this->AllowHeaders)){
 							foreach($this->AllowHeaders as $hdr){
-								$allow_headers_header .= "$hdr, ";
+								$allow_headers_header .= strtolower($hdr) . ", ";
 							}
 							
 							$allow_headers_header = rtrim($allow_headers_header, ',');
@@ -199,7 +204,7 @@
 
 						if(is_array($this->ExposeHeaders)){
 							foreach($this->ExposeHeaders as $expose){
-								$expose_headers_header .= "$expose, ";
+								$expose_headers_header .= strtolower($expose) . ", ";
 							}
 							
 							$expose_headers_header = rtrim($expose_headers_header, ',');
