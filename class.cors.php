@@ -112,8 +112,7 @@
 		}
 		
 		private function createResponse(){
-		
-			if(isset($_SERVER['HTTP_ORIGIN'])){
+			if(isset($_SERVER['HTTP_ORIGIN']) && ($_SERVER['HTTP_ORIGIN'] == $this->AllowOrigin)){
 			
 				//re-sanitize our data
 				$this->setAllowOrigin($this->AllowOrigin);
