@@ -25,5 +25,4 @@
          timeoutForLargeTests="60"
          strict="false"
          verbose="false">
-  <!-- ... -->
 </phpunit>
