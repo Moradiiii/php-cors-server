@@ -9,6 +9,8 @@ Include class.cors.php before you send any content (headers will be sent by this
 
 If you want to manage CORS by domain, simply store the configuration data in a database (or, other storage mechanism) and use the Origin header to lookup which config options to set.
 
+**I believe this implementation to be working as close to spec as I understand it, but please use this at your own risk.**
+
 ##Example
 ```php
 <?php
