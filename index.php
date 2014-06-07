@@ -1,74 +1,42 @@
 <?php
-
-	include 'class.cors.php';
 	
+	include 'api/class.cors.php';
 	
-	//===============================
-	//	Setter style implementation
-	//===============================
-	$cors = new PHP_CORS_SERVER();
+	/* 
+	$config['AllowOrigin'] = 'https://example.com';
+	$config['MaxAge'] = 3600;
+	$config['AllowCredentials'] = true;
+	$config['AllowMethods'] = array('GET','POST','PUT','DELETE');
+	$config['AllowHeaders'] = true;
+	$config['ExposeHeaders'] = array('My-Custom-Header');
 	
-	 
-	//required. 
-	//* is allowed for a public resource.
-	$cors->setAllowOrigin('https://app.example.com');
+	$cors = new PHP_CORS_SERVER($config);
 	
-	//optional, number of seconds
-	$cors->setMaxAge(86400);
-	
-	//optional, defaults to false, including if omitted.
-	//* origin will always be false, regardless of what you set here
-	$cors->setAllowCredentials(true);
-	
-	//optional, defaults to mirror browser request.
-	//you don't need to put OPTIONS in this list
-	$cors->setAllowMethods(array(
-		'GET',
-		'POST',
-		'PUT',
-		'DELETE'
-	));
-	
-	//optional, defaults to mirror browser request.
-	$cors->setAllowHeaders(array(
-		'X-Requested-With',
-		'Authorization'
-	));
-	
-	//optional, additional headers beyond supported simple headers that you'll want access to in your app
-	$cors->setExposeHeaders(array(
-		'X-My-Custom-Header', //common example
-		'Content-Length' //not a simple header
-	));
-	
-	$cors->respond();
-	
-	
-	
-	//===============================
-	//	Config based instantiation
-	//===============================
-	
+	*/
 	
 	$cors = new PHP_CORS_SERVER(array(
-		'AllowOrigin' => 'https://api.example.com',
-		'MaxAge' => 86400,
+	
+		//the origin we want to support.
+		'AllowOrigin' => 'https://example.com',
+		
+		//cache this response. if doing browser testing, clear cache and remove this will help you see preflights  properly
+		//'MaxAge' => 3600,
+		
+		//allows us to use HTTP Authorization (Authorization header)
 		'AllowCredentials' => true,
-		'ExposeHeaders' => array(
-			'Content-Length'
-		),
+		
+		//restrict to our API methods we want to support
+		//we don't have to put OPTIONS on this
 		'AllowMethods' => array(
 			'GET',
 			'POST',
 			'PUT',
 			'DELETE'
 		),
-		'AllowHeaders' => array(
-			'X-Requested-With',
-			'Authorization'
-		)
+		//mirror any headers sent, ok per spec
+		'AllowHeaders' => true
 	));
 	
 	$cors->respond();
 	
-	echo 'Content ' . uniqid();
+	echo 'Content!';

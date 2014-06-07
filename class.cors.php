@@ -84,9 +84,10 @@
 		
 		public function setExposeHeaders($headers = false){
 			if(is_array($headers)){
-				forecah($headers as $header){
+				foreach($headers as $header){
 					$this->ExposeHeaders[] = $header;
 				}
+				$this->ExposeHeaders = array_unique($this->ExposeHeaders);
 			}
 			else{
 				$this->ExposeHeaders = false;
@@ -96,6 +97,8 @@
 		public function setAllowMethods($methods = false){
 			if(is_array($methods)){
 				$this->AllowMethods = $methods;
+				$this->AllowMethods = array_unique($this->AllowMethods);
+
 			}
 			else{
 				$this->AllowMethods = true;
@@ -105,10 +108,10 @@
 		
 		public function setAllowHeaders($headers = false){
 			if(is_array($headers)){
-				forecah($headers as $header){
+				foreach($headers as $header){
 					$this->AllowHeaders[] = strtolower($header);
 				}
-				//$this->AllowHeaders = $headers;
+				$this->AllowHeaders = array_unique($this->AllowHeaders);
 			}
 			else{
 				$this->AllowHeaders = true;
