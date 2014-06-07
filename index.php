@@ -3,6 +3,8 @@
 	include 'api/class.cors.php';
 	
 	/* 
+	
+	//by array
 	$config['AllowOrigin'] = 'https://example.com';
 	$config['MaxAge'] = 3600;
 	$config['AllowCredentials'] = true;
@@ -11,7 +13,18 @@
 	$config['ExposeHeaders'] = array('My-Custom-Header');
 	
 	$cors = new PHP_CORS_SERVER($config);
+	$cors->respond();
 	
+	//or by setters
+	$cors = new PHP_CORS_SERVER();
+	$cors->setAllowOrigin('https://example.com');
+	$cors->setMaxAge(3600);
+	$cors->setAllowCredentials(true);
+	$cors->setAllowMethds(array('GET', 'POST', 'PUT', 'DELETE'));
+	$cors->setAllowHeaders(true);
+	$cors->setExposeHeaders(array('My-Custom-Header'));
+	
+	$cors->respond();
 	*/
 	
 	$cors = new PHP_CORS_SERVER(array(
