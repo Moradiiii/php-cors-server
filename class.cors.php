@@ -96,12 +96,8 @@
 				$this->AllowMethods = $methods;
 			}
 			else{
-				if(is_bool($methods)){
-					$this->AllowMethods = $methods;
-				}
-				else{
-					$this->AllowMethods = false;
-				}
+				$this->AllowMethods = true;
+			
 			}
 		}
 		
@@ -110,7 +106,7 @@
 				$this->AllowHeaders = $headers;
 			}
 			else{
-				$this->AllowHeaders = false;
+				$this->AllowHeaders = true;
 			}
 				
 		}
@@ -138,7 +134,12 @@
 					$response['Access-Control-Allow-Credentials'] = 'true';
 				}
 				else{
-					$response['Access-Control-Allow-Credentials'] = 'false';
+					if (isset($_SERVER['PHP_AUTH_USER']) || isset($_SERVER['HTTP_AUTHENTICATION'])){
+						$response['Access-Control-Allow-Credentials'] = 'true';
+					}
+					else{
+						$response['Access-Control-Allow-Credentials'] = 'false';
+					}
 				}
 				
 				if($_SERVER['REQUEST_METHOD'] == 'OPTIONS'){
