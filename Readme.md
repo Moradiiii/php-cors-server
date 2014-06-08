@@ -1,5 +1,7 @@
 #PHP CORS Server
-[![Build Status](https://secure.travis-ci.org/plabbett/php-cors-server.png)](http://travis-ci.org/plabbett/php-cors-server)
+<!--
+Figure out Travis-ci later
+[![Build Status](https://secure.travis-ci.org/plabbett/php-cors-server.png)](http://travis-ci.org/plabbett/php-cors-server) -->
 Implements Cross-Origin Resource Sharing (CORS) on the server side
 Based on http://www.w3.org/TR/cors/
 
